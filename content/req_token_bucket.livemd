@@ -4,7 +4,8 @@
 Mix.install([
   {:req, "~> 0.4.8"},
   {:nimble_parsec, "~> 1.4"},
-  {:dummy_graph_server, path: "C:\\github\\chgeuer\\_resiliency\\ex_simulated_graph_server"}
+  # {:dummy_graph_server, path: "C:\\github\\chgeuer\\_resiliency\\ex_simulated_graph_server"}
+  {:dummy_graph_server, github: "chgeuer/ex_simulated_graph_server"}
 ])
 ```
 
@@ -24,9 +25,13 @@ defmodule InfiniteLoop do
 end
 ```
 
+When this Livebook loads, there's a Bandit server listening on port 4000, which has a rate limiter. By clicking "Re-evaluate" on the cell below, you can issue multiple requests...
+
 ```elixir
-DummyGraphServer.ServerRateLimiter.demo_pull_tokens()
+Req.get!(url: "http://127.0.0.1:4000/")
 ```
+
+However, this cell issues requests in an endless loop (and uses a client-side rate limiter, which respects the server's limits).
 
 ```elixir
 Req.new(url: "http://127.0.0.1:4000/")
