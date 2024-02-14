@@ -1,0 +1,35 @@
+# Req Token bucket
+
+```elixir
+Mix.install([
+  {:req, "~> 0.4.8"},
+  {:nimble_parsec, "~> 1.4"},
+  {:dummy_graph_server, path: "C:\\github\\chgeuer\\_resiliency\\ex_simulated_graph_server"}
+])
+```
+
+## Section
+
+Trying to inject a plugin into Req, that waits with making a request until a token is available, and updates the token bucket after the request with the remaining tokens.
+
+* https://learn.microsoft.com/en-us/azure/governance/resource-graph/concepts/guidance-for-throttled-requests
+
+```elixir
+defmodule InfiniteLoop do
+  def loop(req) do
+    %Req.Response{status: 200, body: body} = req |> Req.get!()
+    IO.puts(body)
+    loop(req)
+  end
+end
+```
+
+```elixir
+DummyGraphServer.ServerRateLimiter.demo_pull_tokens()
+```
+
+```elixir
+Req.new(url: "http://127.0.0.1:4000/")
+|> ReqTokenBarrier.attach_now_token_barrier()
+|> InfiniteLoop.loop()
+```
