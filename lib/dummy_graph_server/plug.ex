@@ -1,4 +1,7 @@
-defmodule DummyGraphServer.BanditTester do
+defmodule DummyGraphServer.Plug do
+  @moduledoc """
+  This is a plug that simulates a graph server. 
+  """
   require Logger
   alias DummyGraphServer.ServerRateLimiter
   alias ReqTokenBarrier.UserQuota.DurationParser

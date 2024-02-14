@@ -18,7 +18,7 @@ defmodule DummyGraphServer.Supervisor do
   def init(:ok) do
     [
       {DummyGraphServer.ServerRateLimiter, name: DummyGraphServer.ServerRateLimiter},
-      {Bandit, [plug: DummyGraphServer.BanditTester] |> Keyword.merge(bandit_listener())}
+      {Bandit, [plug: DummyGraphServer.Plug] |> Keyword.merge(bandit_listener())}
     ]
     |> Supervisor.init(strategy: :rest_for_one)
   end

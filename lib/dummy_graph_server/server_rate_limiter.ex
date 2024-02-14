@@ -1,4 +1,7 @@
 defmodule DummyGraphServer.ServerRateLimiter do
+  @moduledoc """
+  This is the server-side rate limiter. 
+  """
   use GenServer
   require Logger
 

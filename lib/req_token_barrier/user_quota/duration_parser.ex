@@ -1,4 +1,8 @@
 defmodule ReqTokenBarrier.UserQuota.DurationParser do
+  @moduledoc """
+  A module for parsing durations like `01:02:03` (1 hour, 2 minutes, 3 seconds) into milliseconds (3723000 in that case), and vice versa.
+  """
+
   import NimbleParsec
 
   t_duration =
