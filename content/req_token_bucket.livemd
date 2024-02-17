@@ -2,7 +2,7 @@
 
 ```elixir
 Mix.install([
-  {:req, "~> 0.4.8"},
+  {:req, "~> 0.4.9"},
   {:nimble_parsec, "~> 1.4"},
   # {:dummy_graph_server, path: "C:\\github\\chgeuer\\_resiliency\\ex_simulated_graph_server"}
   {:dummy_graph_server, github: "chgeuer/ex_simulated_graph_server"}
